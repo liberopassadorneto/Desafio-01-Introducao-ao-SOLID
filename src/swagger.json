@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Desafio 02 - Documentando com Swagger Documentation",
+        "description": "This is an API Template for CRUD and Authentication Users",
+        "version": "1.0.0",
+        "contact": {
+            "email": "lib@dev.com"
+        }
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "user name sample",
+                                    "email": "user email sample"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created"
+                    },
+                    "400": {
+                        "description": "User already exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List all users",
+                "description": "List all users if and only if the current user is an admin",
+                "parameters": {
+                    "in": "path",
+                    "name": "userId",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "required": true,
+                    "description": "Numeric ID of the user to get"
+                }
+            }
+        }
+    }
+}
